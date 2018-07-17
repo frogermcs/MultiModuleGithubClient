@@ -1,0 +1,22 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0-beta02'
+        classpath 'org.jacoco:org.jacoco.core:0.8.1'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-SNAPSHOT'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
+}

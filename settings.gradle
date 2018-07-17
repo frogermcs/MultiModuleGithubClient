@@ -1,0 +1,4 @@
+include ':app',
+        ':features:base',
+        ':features:repositories',
+        ':features:repository'

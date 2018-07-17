@@ -1,0 +1,26 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="App and modules tests" type="AndroidJUnit" factoryName="Android JUnit">
+    <module name="app" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="PACKAGE_NAME" value="" />
+    <option name="MAIN_CLASS_NAME" value="" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="package" />
+    <option name="VM_PARAMETERS" value="-ea" />
+    <option name="PARAMETERS" value="" />
+    <option name="WORKING_DIRECTORY" value="file://%MODULE_WORKING_DIR%" />
+    <option name="PASS_PARENT_ENVS" value="true" />
+    <option name="TEST_SEARCH_SCOPE">
+      <value defaultName="singleModule" />
+    </option>
+    <dir value="$PROJECT_DIR$" />
+    <patterns />
+    <method>
+      <option name="Android.Gradle.BeforeRunTask" enabled="true" goal="" />
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Repositories tests" run_configuration_type="AndroidJUnit" />
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Base tests" run_configuration_type="AndroidJUnit" />
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Repository tests" run_configuration_type="AndroidJUnit" />
+    </method>
+  </configuration>
+</component>

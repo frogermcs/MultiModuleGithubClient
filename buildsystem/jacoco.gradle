@@ -1,0 +1,72 @@
+// Android Gradle Plugin out of the box only supports code coverage for instrumentation espresso) tests.
+// This add support for unit tests as well.
+
+def fileFilter = [
+        '**/R.class',
+        '**/R$*.class',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        '**/*Test*.*',
+        'android/**/*.*',
+
+        //Butterknife hack for multi-modules poroject
+        '**/R2.class',
+        '**/R2$*.class',
+        '**/*_ViewBinding*.*',
+
+        //Dagger 2
+        '**/*Dagger*Component*.*',
+        '**/*Module.*',
+        '**/*Module$*.*',
+        '**/*MembersInjector*.*',
+        '**/*_Factory*.*',
+        '**/*Provide*Factory*.*',
+
+        //Autofactory
+        '**/*Factory.*',
+
+        //Classes I intentionally don't want to test
+        '**/*Activity.*',
+        '**/App.class',
+        '**/*Adapter.*',
+        '**/*ViewHolder*.*',
+        '**/api/response/*.*',
+        '**/data/model/*.*',
+]
+
+task testDebugUnitTestCoverage(type: JacocoReport) {
+    group = 'Reporting'
+    description = "Generate Jacoco coverage reports for the debug build. Only unit tests."
+
+    //Make sure that tests from all modules are run before coverage report
+    dependsOn ":app:testDebugUnitTest"
+    dependsOn ":features:base:testDebugUnitTest"
+    dependsOn ":features:repository:testDebugUnitTest"
+    dependsOn ":features:repositories:testDebugUnitTest"
+
+    classDirectories = files([
+            fileTree(dir: "$project.rootDir/app/build/intermediates/javac/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/features/base/build/intermediates/javac/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/features/repository/build/intermediates/javac/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/features/repositories/build/intermediates/javac/debug", excludes: fileFilter),
+    ])
+    def coverageSourceDirs = [
+            "$project.rootDir/app/src/main/java",
+            "$project.rootDir/features/base/src/main/java",
+            "$project.rootDir/features/repository/src/main/java",
+            "$project.rootDir/features/repositories/src/main/java",
+    ]
+    additionalSourceDirs = files(coverageSourceDirs)
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = fileTree(dir: project.rootDir, includes: [
+            'app/build/jacoco/testDebugUnitTest.exec',
+            'features/base/build/jacoco/testDebugUnitTest.exec',
+            'features/repository/build/jacoco/testDebugUnitTest.exec',
+            'features/repositories/build/jacoco/testDebugUnitTest.exec',
+    ])
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
