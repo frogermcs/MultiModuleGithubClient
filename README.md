@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/frogermcs/MultiModuleGithubClient.svg?branch=master)](https://travis-ci.com/frogermcs/MultiModuleGithubClient)
+
 # MultiModuleGithubClient
 
 Breaking the monolith to microservices is a well-known concept to make backend solutions extendable and maintainable in a scale, by bigger teams. Since mobile apps have become more complex, very often developed by teams of tens of software engineers this concept also grows in mobile platforms. There are many benefits from having apps split into modules/features/libraries:
