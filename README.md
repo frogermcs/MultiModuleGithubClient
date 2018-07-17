@@ -24,7 +24,7 @@ The project is a straightforward Github API client containing 3 screens (user se
 ## Dagger 2
 
 Recently there is no recommended Dagger 2 configuration for multi-module Android project. Some software engineers recommend exposing Dagger modules from Android feature module and use them in Components maintained only in the main App module. This project implements the second way - each feature module has its Component and dependencies tree. All of them depends on Base Component (created in Base module). All have their scope and subcomponents.
-This approach was proposed by my colleague @dbarwacz and recently is heavily used in Azimo Android application.
+This approach was proposed by my colleague [@dbarwacz](https://github.com/dbarwacz) and recently is heavily used in [Azimo](https://azimo.com) Android application.
 
 Here are some highlights from it:
 
