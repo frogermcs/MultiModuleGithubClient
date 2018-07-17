@@ -1,0 +1,22 @@
+language: android
+
+android:
+  components:
+    - build-tools-27.0.3
+    - android-27
+
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+jdk:
+  - oraclejdk8
+
+notifications:
+  email: true
+
+cache:
+  directories:
+    - $HOME/.m2
+
+script:
+    ./gradlew testDebugUnitTest testDebugUnitTestCoverage assembleDebug
