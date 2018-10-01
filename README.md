@@ -20,8 +20,10 @@ The project is a straightforward Github API client containing 3 screens (user se
 * repository - repository detail
 * base - module containing a code shared between all modules
 
-![Project structue](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/app_diagram.png "Project structure")
+![Project structure](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/app_diagram.png "Project structure")
 
+### Dependencies management
+It is easy to get lost with dependencies management across different project modules (especially with libs versions). To make it easier, take a look at `buildsystem/dependencies.gradle` where everything is configured. Each module has separate configuration, with additional two for testing and annotation processing. Like some other patterns, this was originally introduced in [Azimo](https://azimo.com) Android application by [@dbarwacz](https://github.com/dbarwacz).
 
 ## Dagger 2
 
