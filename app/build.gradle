@@ -21,12 +21,13 @@ dependencies {
     implementation project(':features:base')
     implementation project(':features:repositories')
 
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.14.1'
-    annotationProcessor 'com.google.auto.factory:auto-factory:1.0-beta3'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-SNAPSHOT'
-
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.19.0'
+    rootProject.app.each { item ->
+        add(item.configuration, item.dependency, item.options)
+    }
+    rootProject.unitTestsDependencies.each { item ->
+        add(item.configuration, item.dependency, item.options)
+    }
+    rootProject.annotationProcessorsDependencies.each { item ->
+        add(item.configuration, item.dependency, item.options)
+    }
 }
