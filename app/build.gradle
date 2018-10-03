@@ -5,6 +5,11 @@ apply from: '../buildsystem/jacoco.gradle'
 apply from: '../buildsystem/android_commons.gradle'
 
 android {
+
+    defaultConfig {
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
@@ -24,10 +29,13 @@ dependencies {
     rootProject.app.each { item ->
         add(item.configuration, item.dependency, item.options)
     }
+    rootProject.annotationProcessorsDependencies.each { item ->
+        add(item.configuration, item.dependency, item.options)
+    }
     rootProject.unitTestsDependencies.each { item ->
         add(item.configuration, item.dependency, item.options)
     }
-    rootProject.annotationProcessorsDependencies.each { item ->
+    rootProject.instrumentationTestsDependencies.each { item ->
         add(item.configuration, item.dependency, item.options)
     }
 }

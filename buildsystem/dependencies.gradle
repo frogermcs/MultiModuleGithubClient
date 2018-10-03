@@ -25,6 +25,11 @@ ext {
     junitVersion = '4.12'
     mockitoVersion = '2.21.0'
 
+    //Functional/end-to-end testing dependencies
+    espressoVersion = '3.0.2'
+    testRunnerVersion = '1.0.2'
+    testRulesVersion = '1.0.2'
+
     //
     // ===== Libraries =====
     //
@@ -56,6 +61,13 @@ ext {
     //Testing dependencies
     junit = "junit:junit:${junitVersion}"
     mockito = "org.mockito:mockito-core:${mockitoVersion}"
+
+    //Functional/end-to-end testing dependencies
+    espressoCore = "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+    espressoIntents = "com.android.support.test.espresso:espresso-intents:${espressoVersion}"
+    espressoContrib = "com.android.support.test.espresso:espresso-contrib:${espressoVersion}"
+    testRunner = "com.android.support.test:runner:${testRunnerVersion}"
+    testRules = "com.android.support.test:rules:${testRulesVersion}"
 
     //
     // ===== Modules =====
@@ -93,6 +105,15 @@ ext {
     unitTestsDependencies = [
             [configuration: "testImplementation", dependency: junit],
             [configuration: "testImplementation", dependency: mockito]
+    ]
+
+    //Importend in app module only
+    instrumentationTestsDependencies = [
+            [configuration: "androidTestImplementation", dependency: espressoCore],
+            [configuration: "androidTestImplementation", dependency: espressoIntents],
+            [configuration: "androidTestImplementation", dependency: espressoContrib],
+            [configuration: "androidTestImplementation", dependency: testRunner],
+            [configuration: "androidTestImplementation", dependency: testRules],
     ]
 
     //Imported in all modules
