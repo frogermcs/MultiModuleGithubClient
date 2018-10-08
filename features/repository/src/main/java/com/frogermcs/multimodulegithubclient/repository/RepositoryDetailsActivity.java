@@ -41,6 +41,7 @@ public class RepositoryDetailsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repository_details);
+        setTitle("Repository details");
         presenter.init();
     }
 
