@@ -46,6 +46,7 @@ public class RepositoriesListActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repositories_list);
+        setTitle("Repositories list");
         setupRepositoriesListView();
         presenter.init();
     }

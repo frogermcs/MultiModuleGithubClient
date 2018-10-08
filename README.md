@@ -158,3 +158,40 @@ buildTypes {
 * Task `testDebugUnitTestCoverage` depends on `testDebugUnitTest` tasks (each module separately). Thanks to it all sources required for coverage report are available before gradle starts generating it (in `<module_dir>/build/...`.
 
 ![Coverage report](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/coverage_report.png "Coverage report")
+
+
+## Instrumentation Testing
+
+Project contains example Instrumentation test. 
+
+### Gradle
+
+To run all Instrumentation tests from all modules at once launch emulator or plugin device and execute:
+
+```
+./gradlew connectedAndroidTest
+```
+
+When all goes fine, you should see testing report in `app/build/reports/androidTests/connected/` directory.
+![Instrumentation test report](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/instrumentation_report_example.png "Instrumentation test report")
+
+### Functional vs End-to-end testing
+From the high level, Android Instrumentation tests can be split into two types: functional and end-to-end. You can check my [article](https://medium.com/azimolabs/automated-testing-will-set-your-engineering-team-free-a89467c40731) about how we do QA at Azimo to see what is the difference between both of them. 
+
+Having in mind multi-feature config, it's pretty likely building functional tests can be more difficult. It's because your modules won't always see each other. In our example `app` module doesn't have knowledge about `feature/repository` module, so it means that instead of code:
+
+```java
+intended(hasComponent(RepositoryDetailsActivity.class.getName()));
+```
+
+you need to use:
+
+```java
+intended(hasComponent("com.frogermcs.multimodulegithubclient.repository.RepositoryDetailsActivity"));
+```
+
+It is, because `app` module doesn't have access to `RepositoryDetailsActivity` class.
+
+What about end-to-end tests? They shouldn't be problematic, simply because tests shouldn't have knowledge about specific implementation, but rather how user interface is composed (so again, not: `withText("R.string.show_repos")` but `withText("Show repositories")`). 
+
+More cases: TBD
