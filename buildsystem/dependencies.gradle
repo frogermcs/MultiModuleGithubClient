@@ -9,7 +9,7 @@ ext {
     butterknifeVersion = '9.0.0-SNAPSHOT'
 
     //Standard dependencies
-    supportLibraryVersion = '28.0.0'
+    supportLibraryVersion = '1.0.0'
     javaxAnnotationsVersion = '10.0-b28'
     autoFactoryVersion = '1.0-beta3'
     rxAndroidVersion = '1.2.1'
@@ -26,9 +26,9 @@ ext {
     mockitoVersion = '2.21.0'
 
     //Functional/end-to-end testing dependencies
-    espressoVersion = '3.0.2'
-    testRunnerVersion = '1.0.2'
-    testRulesVersion = '1.0.2'
+    espressoVersion = '3.1.0-alpha3'
+    testRunnerVersion = '1.1.0-alpha3'
+    testRulesVersion = '1.1.0-alpha3'
 
     //
     // ===== Libraries =====
@@ -40,8 +40,8 @@ ext {
     butterknifeCompiler = "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
 
     //Standard dependencies
-    appCompatV7 = "com.android.support:appcompat-v7:${supportLibraryVersion}"
-    recyclerViewV7 = "com.android.support:recyclerview-v7:${supportLibraryVersion}"
+    appCompat = "androidx.appcompat:appcompat:${supportLibraryVersion}"
+    recyclerView = "androidx.recyclerview:recyclerview:${supportLibraryVersion}"
 
     butterknife = "com.jakewharton:butterknife:${butterknifeVersion}"
     dagger = "com.google.dagger:dagger:${daggerVersion}"
@@ -63,29 +63,36 @@ ext {
     mockito = "org.mockito:mockito-core:${mockitoVersion}"
 
     //Functional/end-to-end testing dependencies
-    espressoCore = "com.android.support.test.espresso:espresso-core:${espressoVersion}"
-    espressoIntents = "com.android.support.test.espresso:espresso-intents:${espressoVersion}"
-    espressoContrib = "com.android.support.test.espresso:espresso-contrib:${espressoVersion}"
-    testRunner = "com.android.support.test:runner:${testRunnerVersion}"
-    testRules = "com.android.support.test:rules:${testRulesVersion}"
+    espressoCore = "androidx.test.espresso:espresso-core:${espressoVersion}"
+    espressoIntents = "androidx.test.espresso:espresso-intents:${espressoVersion}"
+    espressoContrib = "androidx.test.espresso:espresso-contrib:${espressoVersion}"
+    testRunner = "androidx.test:runner:${testRunnerVersion}"
+    testRules = "androidx.test:rules:${testRulesVersion}"
+
+    espressoExcludes = {
+        exclude group: 'androidx.legacy', module: 'legacy-support-v4'
+        exclude module: 'recyclerview'
+    }
+
 
     //
     // ===== Modules =====
     //
     app = [
-            [configuration: "implementation", dependency: appCompatV7],
+            [configuration: "implementation", dependency: appCompat],
+            [configuration: "implementation", dependency: recyclerView],
     ]
 
     repository = [
     ]
 
     repos = [
-            [configuration: "implementation", dependency: recyclerViewV7],
+            [configuration: "implementation", dependency: recyclerView],
     ]
 
     base = [
             [configuration: "api", dependency: butterknife],
-            [configuration: "api", dependency: appCompatV7],
+            [configuration: "api", dependency: appCompat],
             [configuration: "api", dependency: dagger],
             [configuration: "api", dependency: javaxAnnotations],
             [configuration: "api", dependency: autoFactory],
@@ -109,9 +116,9 @@ ext {
 
     //Importend in app module only
     instrumentationTestsDependencies = [
-            [configuration: "androidTestImplementation", dependency: espressoCore],
-            [configuration: "androidTestImplementation", dependency: espressoIntents],
-            [configuration: "androidTestImplementation", dependency: espressoContrib],
+            [configuration: "androidTestImplementation", dependency: espressoCore, options: espressoExcludes],
+            [configuration: "androidTestImplementation", dependency: espressoIntents, options: espressoExcludes],
+            [configuration: "androidTestImplementation", dependency: espressoContrib, options: espressoExcludes],
             [configuration: "androidTestImplementation", dependency: testRunner],
             [configuration: "androidTestImplementation", dependency: testRules],
     ]

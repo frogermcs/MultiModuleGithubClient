@@ -113,3 +113,13 @@
 -dontnote com.google.gson.internal.**
 
 # ===endof GSON ===
+
+
+
+# === App UI ===
+-keep class androidx.recyclerview.widget.RecyclerView {
+   public <methods>;
+}
+-keep class androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior {*;}
+
+# ===endof App UI ===
