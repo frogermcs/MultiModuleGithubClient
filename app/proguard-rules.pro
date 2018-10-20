@@ -1,3 +1,7 @@
+# === General rules ===
+
+-dontobfuscate # Only because of easy debugging
+
 # === RxJava ===
 
 -dontwarn sun.misc.**
@@ -15,7 +19,7 @@
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
 
--dontnote rx.internal.util.PlatformDependent
+-dontnote rx.internal.util.**
 
 # ===endof RxJava ===
 
@@ -33,6 +37,8 @@
 
 # OkHttp platform used only on JVM and when Conscrypt dependency is available.
 -dontwarn okhttp3.internal.platform.ConscryptPlatform
+
+-dontnote okhttp3.**
 
 # ===endof OkHttp ===
 
@@ -77,4 +83,33 @@
 -dontwarn com.google.common.**
 -dontwarn com.google.auto.**
 
+-dontnote com.google.common.**
+-dontnote com.google.auto.**
+
 # ===endof Google autofactory ===
+
+# === GSON ===
+
+# Gson uses generic type information stored in a class file when working with fields. Proguard
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+# Gson specific classes
+-dontwarn sun.misc.**
+#-keep class com.google.gson.stream.** { *; }
+
+# Application classes that will be serialized/deserialized over Gson
+-keep class com.google.gson.examples.android.model.** { *; }
+
+# Prevent proguard from stripping interface information from TypeAdapterFactory,
+# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+
+-dontnote com.google.gson.internal.**
+
+# ===endof GSON ===
