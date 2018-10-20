@@ -1,8 +1,8 @@
 package com.frogermcs.multimodulegithubclient.base;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {

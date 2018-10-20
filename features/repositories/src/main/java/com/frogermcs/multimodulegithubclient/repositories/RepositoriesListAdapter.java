@@ -1,6 +1,5 @@
 package com.frogermcs.multimodulegithubclient.repositories;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.frogermcs.multimodulegithubclient.base.data.model.Repository;
@@ -8,6 +7,8 @@ import com.frogermcs.multimodulegithubclient.base.data.model.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Miroslaw Stanek on 24.04.15.

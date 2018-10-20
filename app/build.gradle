@@ -7,7 +7,7 @@ apply from: '../buildsystem/android_commons.gradle'
 android {
 
     defaultConfig {
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -15,12 +15,13 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
+            testProguardFile 'proguard-test-rules.pro'
         }
 
         release {
             minifyEnabled true
-            proguardFile 'proguard-rules.pro'
-            proguardFile getDefaultProguardFile('proguard-android.txt')
+            proguardFiles getDefaultProguardFile('proguard-android.txt') ,
+                    'proguard-rules.pro'
         }
     }
 

@@ -1,9 +1,10 @@
 package com.frogermcs.multimodulegithubclient.repositories;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.frogermcs.multimodulegithubclient.base.data.model.Repository;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Miroslaw Stanek on 11.06.2016.

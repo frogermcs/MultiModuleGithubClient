@@ -1,7 +1,5 @@
 package com.frogermcs.multimodulegithubclient.repositories;
 
-import android.support.v7.widget.LinearLayoutManager;
-
 import com.frogermcs.multimodulegithubclient.base.ActivityScope;
 import com.frogermcs.multimodulegithubclient.base.data.api.RepositoriesManager;
 import com.frogermcs.multimodulegithubclient.base.data.model.Repository;
@@ -11,6 +9,7 @@ import java.util.Map;
 
 import javax.inject.Named;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntKey;
