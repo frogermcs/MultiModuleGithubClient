@@ -117,6 +117,7 @@
 
 
 # === App UI ===
+
 -keep class androidx.recyclerview.widget.RecyclerView {
    public <methods>;
 }
