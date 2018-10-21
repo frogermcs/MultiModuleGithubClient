@@ -195,3 +195,55 @@ It is, because `app` module doesn't have access to `RepositoryDetailsActivity` c
 What about end-to-end tests? They shouldn't be problematic, simply because tests shouldn't have knowledge about specific implementation, but rather how user interface is composed (so again, not: `withText("R.string.show_repos")` but `withText("Show repositories")`). 
 
 More cases: TBD
+
+
+## Proguard
+
+Proguard configuration isn't very different in standard and multi-feature project configuration. Minification process is enabled in `app/build.gradle` file:
+
+```groovy
+buildTypes {
+    debug {
+        minifyEnabled true
+        proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                'proguard-rules.pro'
+        testProguardFile 'proguard-test-rules.pro'
+    }
+    //...
+}
+```
+
+For proguard configuration and know-how we could create completely separate demo project and a bunch of articles. Instead, just take a look at screenshots that compare this poject with and without minification enabled.
+
+#### Project without proguard
+
+![No proguard config](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/no-proguard.png "No proguard config")
+
+#### Project with proguard
+
+![With proguard config](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/with-proguard.png "With proguard config")
+
+### Proguard config for project modules
+
+It is also possible to provide proguard configuration for each module separately. And why would you like to do this? Usually proguard configuration is set in app's gradle file, because this is the place where you really know which classes and methods are used. All global flags `-dontoptimize` also should be set there.
+But sometimes there are module-specific configurations. So for example you would like to keep methods or classes, even if they aren't used in app's module. In this situation you should use `consumerProguardFiles`. See `features/base/build.gradle`:
+
+```groovy
+buildTypes {
+    all {
+        consumerProguardFiles 'feature-base-proguard-rules.pro'
+    }
+}
+```
+
+Configuration tells:
+
+```
+-keep class com.frogermcs.multimodulegithubclient.base.BaseActivity {
+   public void notUsedMethod();
+}
+```
+
+It means that method `notUsedMethod()` from class `BaseActivity` will be kept, no matter what.
+
+For more details, take a look at [this blog](https://proandroiddev.com/handling-proguard-as-library-developer-or-in-a-multi-module-android-application-2d738c37890) post describing how to setup Proguard for multi-module android app.

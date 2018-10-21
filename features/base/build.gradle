@@ -5,6 +5,12 @@ apply from: '../../buildsystem/android_commons.gradle'
 
 android {
     baseFeature true
+
+    buildTypes {
+        all {
+            consumerProguardFiles 'feature-base-proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
