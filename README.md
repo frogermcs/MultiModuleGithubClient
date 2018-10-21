@@ -20,7 +20,7 @@ The project is a straightforward Github API client containing 3 screens (user se
 * repository - repository detail
 * base - module containing a code shared between all modules
 
-![Project structure](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/app_diagram.png "Project structure")
+![Project structure](docs/img/app_diagram.png "Project structure")
 
 ### Dependencies management
 It is easy to get lost with dependencies management across different project modules (especially with libs versions). To make it easier, take a look at `buildsystem/dependencies.gradle` where everything is configured. Each module has separate configuration, with additional two for testing and annotation processing. Like some other patterns, this was originally introduced in [Azimo](https://azimo.com) Android application by [@dbarwacz](https://github.com/dbarwacz).
@@ -38,7 +38,7 @@ Here are some highlights from it:
 
 For the rest take a look at the code - should be self-explaining. As this is just self-invented setup (that works on production!), all kind of feedback is warmly welcomed.
 
-![Dagger structue](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/dagger_diagram.png "Dagger structure")
+![Dagger structue](docs/img/dagger_diagram.png "Dagger structure")
 
 ## Unit Testing
 
@@ -108,7 +108,7 @@ or
 
 The repository contains shared configurations for running Unit Tests directly from Android Studio.
 
-![Android Studio configs](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/as_run_configurations.png "Android Studio configs")
+![Android Studio configs](docs/img/as_run_configurations.png "Android Studio configs")
 
 #### All tests at once
 
@@ -118,14 +118,14 @@ Recently it is not always possible to run all tests at once (see troubleshooting
 
 Run `App and modules tests`. This configuration will run unit tests from all modules in separate tabs, one after another. To modify list of tests, click on `Edit Configurations` -> `App and modules tests` -> `Before Launch`.
 
-![All tests sequential](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/all_tests_sequential.png "All tests sequential")
+![All tests sequential](docs/img/all_tests_sequential.png "All tests sequential")
 
 #### Troubleshooting
 
 * **Class not found: ... Empty test suite.**
 There is a bug in Android Studio which prevents from launching all unit tests at once, before their code is generated (what happens after the first run of unit tests for every single module independently). For more take a look at Android Studio bug tracker: https://issuetracker.google.com/issues/111154138.
 
-![Android Studio issues](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/failing_all_tests.png "Android Studio issues")
+![Android Studio issues](docs/img/failing_all_tests.png "Android Studio issues")
 
 ## Test coverage for unit tests
 
@@ -157,7 +157,7 @@ buildTypes {
 
 * Task `testDebugUnitTestCoverage` depends on `testDebugUnitTest` tasks (each module separately). Thanks to it all sources required for coverage report are available before gradle starts generating it (in `<module_dir>/build/...`.
 
-![Coverage report](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/coverage_report.png "Coverage report")
+![Coverage report](docs/img/coverage_report.png "Coverage report")
 
 
 ## Instrumentation Testing
@@ -173,7 +173,7 @@ To run all Instrumentation tests from all modules at once launch emulator or plu
 ```
 
 When all goes fine, you should see testing report in `app/build/reports/androidTests/connected/` directory.
-![Instrumentation test report](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/instrumentation_report_example.png "Instrumentation test report")
+![Instrumentation test report](docs/img/instrumentation_report_example.png "Instrumentation test report")
 
 ### Functional vs End-to-end testing
 From the high level, Android Instrumentation tests can be split into two types: functional and end-to-end. You can check my [article](https://medium.com/azimolabs/automated-testing-will-set-your-engineering-team-free-a89467c40731) about how we do QA at Azimo to see what is the difference between both of them. 
@@ -199,7 +199,7 @@ More cases: TBD
 
 ## Proguard
 
-Proguard configuration isn't very different in standard and multi-feature project configuration. Minification process is enabled in `app/build.gradle` file:
+Proguard configuration isn't very different in standard and multi-feature project configuration. Minification process is enabled in `app/build.gradle` [file](app/build.gradle):
 
 ```groovy
 buildTypes {
@@ -213,20 +213,21 @@ buildTypes {
 }
 ```
 
-For proguard configuration and know-how we could create completely separate demo project and a bunch of articles. Instead, just take a look at screenshots that compare this poject with and without minification enabled.
+For proguard configuration and know-how we could create completely separate demo project and a bunch of articles. Instead, just take a look at screenshots that compare apk files built from this project, with and without minification enabled.
 
 #### Project without proguard
 
-![No proguard config](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/no-proguard.png "No proguard config")
+![No proguard config](docs/img/no-proguard.png "No proguard config")
 
 #### Project with proguard
 
-![With proguard config](https://raw.githubusercontent.com/frogermcs/MultiModuleGithubClient/master/docs/img/with-proguard.png "With proguard config")
+![With proguard config](docs/img/with-proguard.png "With proguard config")
 
 ### Proguard config for project modules
 
-It is also possible to provide proguard configuration for each module separately. And why would you like to do this? Usually proguard configuration is set in app's gradle file, because this is the place where you really know which classes and methods are used. All global flags `-dontoptimize` also should be set there.
-But sometimes there are module-specific configurations. So for example you would like to keep methods or classes, even if they aren't used in app's module. In this situation you should use `consumerProguardFiles`. See `features/base/build.gradle`:
+It is also possible to Provide proguard configuration for each module separately. Why would you like to do this? Usually Proguard configuration is set in app's module gradle file. Also all global flags `-dontoptimize` also should be set there.
+But sometimes there are module-specific configurations. So for example you would like to keep methods or classes, even if they aren't used in app's module. Also when you share .aar library file, you can provide it with Proguard configuration built in.
+In this situation you should use `consumerProguardFiles`. For example, see `features/base/build.gradle` (file)[features/base/feature-base-proguard-rules.pro]:
 
 ```groovy
 buildTypes {
@@ -244,6 +245,6 @@ Configuration tells:
 }
 ```
 
-It means that method `notUsedMethod()` from class `BaseActivity` will be kept, no matter what.
+It means that method `notUsedMethod()` from class (BaseActivity)[features/base/src/main/java/com/frogermcs/multimodulegithubclient/base/BaseActivity.java] will be kept, no matter what.
 
-For more details, take a look at [this blog](https://proandroiddev.com/handling-proguard-as-library-developer-or-in-a-multi-module-android-application-2d738c37890) post describing how to setup Proguard for multi-module android app.
+For more details, take a look at [this blog post](https://proandroiddev.com/handling-proguard-as-library-developer-or-in-a-multi-module-android-application-2d738c37890) that describes how to setup Proguard for multi-module android app.
