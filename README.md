@@ -33,7 +33,7 @@ This approach was proposed by my colleague [@dbarwacz](https://github.com/dbarwa
 Here are some highlights from it:
 
 * `BaseComponent` is used as a dependency in feature components (e.g. `RepositoriesFeatureComponent`, `AppComponent`...). It means that all dependencies that are used in  needs to be publicly exposed in `BaseComponent` interface.
-* Local components, like `SplashActivityComponent` are subcomponents of feature component (`SplashActivityComponents` is a subcomponent of `AppComponent`).
+* Local components, like `SplashActivityComponent` are subcomponents of feature component (`SplashActivityComponent` is a subcomponent of `AppComponent`).
 * Each module has its own Scope (e.g. `RepositoryFeatureScope`, `AppScope`). Effectively they define singletons - they live as long as components, which are maintained by classes: `AppComponentWrapper`, `RepositoryFeatureComponentWrapper` which are singletons... . To have better control on Scopes lifecycle, a good idea would be to add `release()` method to ComponentWrappers.
 
 For the rest take a look at the code - should be self-explaining. As this is just self-invented setup (that works on production!), all kind of feedback is warmly welcomed.
