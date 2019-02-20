@@ -6,7 +6,7 @@ ext {
     //Annotation processor dependencies
     daggerVersion = '2.14.1'
     autoFactoryVersion = '1.0-beta3'
-    butterknifeVersion = '9.0.0-rc1'
+    butterknifeVersion = '10.1.0'
 
     //Standard dependencies
     supportLibraryVersion = '1.0.0'
