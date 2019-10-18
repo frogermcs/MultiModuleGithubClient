@@ -11,6 +11,9 @@ android:
 jdk:
   - oraclejdk8
 
+before_install:
+  - yes | sdkmanager --licenses
+
 notifications:
   email: true
 
