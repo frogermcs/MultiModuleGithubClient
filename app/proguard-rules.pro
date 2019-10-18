@@ -2,9 +2,16 @@
 
 -dontobfuscate # Only because of easy debugging
 
+-dontwarn org.conscrypt.**
+-dontwarn javax.lang.model.**
+-dontwarn javax.tools.**
+-dontwarn java.lang.instrument.**
+-dontwarn java.lang.ClassValue
+
 # === RxJava ===
 
 -dontwarn sun.misc.**
+-dontwarn sun.reflect.**
 
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
    long producerIndex;
