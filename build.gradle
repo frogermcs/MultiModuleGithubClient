@@ -7,8 +7,9 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.1'
-        classpath 'org.jacoco:org.jacoco.core:0.8.1'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+        classpath 'org.jacoco:org.jacoco.core:0.8.5'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.0'
+        classpath "com.github.ben-manes:gradle-versions-plugin:0.27.0"
     }
 }
 
@@ -21,4 +22,5 @@ allprojects {
     }
 }
 
+apply plugin: "com.github.ben-manes.versions"
 apply from: 'buildsystem/dependencies.gradle'
