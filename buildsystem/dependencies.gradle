@@ -6,6 +6,7 @@ ext {
     //Annotation processor dependencies
     daggerVersion = '2.24'
     autoFactoryVersion = '1.0-beta7'
+    autoValueVersion = "1.7rc1"
     butterknifeVersion = '10.2.0'
 
     //Standard dependencies
@@ -47,6 +48,8 @@ ext {
     dagger = "com.google.dagger:dagger:${daggerVersion}"
     javaxAnnotations = "org.glassfish:javax.annotation:${javaxAnnotationsVersion}"
     autoFactory = "com.google.auto.factory:auto-factory:${autoFactoryVersion}"
+    autoValue = "com.google.auto.value:auto-value:${autoValueVersion}"
+    autoValueAnnotations = "com.google.auto.value:auto-value-annotations:${autoValueVersion}"
     rxAndroid = "io.reactivex:rxandroid:${rxAndroidVersion}"
     rxJava = "io.reactivex:rxjava:${rxJavaVersion}"
     rxBinding = "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}"
@@ -96,6 +99,8 @@ ext {
             [configuration: "api", dependency: dagger],
             [configuration: "api", dependency: javaxAnnotations],
             [configuration: "api", dependency: autoFactory],
+            [configuration: "api", dependency: autoValue],
+            [configuration: "api", dependency: autoValueAnnotations],
             [configuration: "api", dependency: rxAndroid],
             [configuration: "api", dependency: rxJava],
             [configuration: "api", dependency: rxBinding],
@@ -128,5 +133,6 @@ ext {
             [configuration: "annotationProcessor", dependency: autoFactoryCompiler],
             [configuration: "annotationProcessor", dependency: daggerCompiler],
             [configuration: "annotationProcessor", dependency: butterknifeCompiler],
+            [configuration: "annotationProcessor", dependency: autoValue],
     ]
 }
