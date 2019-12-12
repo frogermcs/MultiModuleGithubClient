@@ -20,7 +20,7 @@ android {
 
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt') ,
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
         }
     }
@@ -28,11 +28,15 @@ android {
     packagingOptions {
         exclude 'META-INF/androidx.legacy_legacy-support-core-utils.version'
     }
+
+    dynamicFeatures = []
+
 }
 
 dependencies {
     implementation project(':features:base')
     implementation project(':features:repositories')
+    implementation project(':features:repository')
 
     rootProject.app.each { item ->
         add(item.configuration, item.dependency, item.options)

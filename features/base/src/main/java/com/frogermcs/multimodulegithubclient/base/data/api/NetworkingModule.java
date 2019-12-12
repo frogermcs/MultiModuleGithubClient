@@ -41,7 +41,7 @@ public class NetworkingModule {
     @Singleton
     public HttpLoggingInterceptor provideHttpLoggingInterceptor() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+        logging.level(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
         return logging;
     }
 

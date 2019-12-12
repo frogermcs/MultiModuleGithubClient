@@ -4,12 +4,13 @@ ext {
     //
 
     //Annotation processor dependencies
-    daggerVersion = '2.24'
+    daggerVersion = '2.25.2'
     autoFactoryVersion = '1.0-beta7'
+    autoValueVersion = "1.7"
     butterknifeVersion = '10.2.0'
 
     //Standard dependencies
-    supportLibraryVersion = '1.0.0'
+    supportLibraryVersion = '1.1.0'
     javaxAnnotationsVersion = '10.0-b28'
     autoFactoryVersion = '1.0-beta7'
     rxAndroidVersion = '1.2.1'
@@ -17,12 +18,12 @@ ext {
     rxBindingVersion = '1.0.1'
     timberVersion = '4.7.1'
     retrofitVersion = '2.6.2'
-    gsonVersion = '2.3.0'
+    gsonVersion = '2.6.2'
     okhttpVersion = '4.2.2'
     guavaVersion = '28.1-android'
 
     // Testing dependencies
-    junitVersion = '4.13-beta-3'
+    junitVersion = '4.13-rc-1'
     mockitoVersion = '3.1.0'
 
     //Functional/end-to-end testing dependencies
@@ -41,12 +42,14 @@ ext {
 
     //Standard dependencies
     appCompat = "androidx.appcompat:appcompat:${supportLibraryVersion}"
-    recyclerView = "androidx.recyclerview:recyclerview:${supportLibraryVersion}"
+    recyclerView = "androidx.recyclerview:recyclerview:1.1.0-rc01"
 
     butterknife = "com.jakewharton:butterknife:${butterknifeVersion}"
     dagger = "com.google.dagger:dagger:${daggerVersion}"
     javaxAnnotations = "org.glassfish:javax.annotation:${javaxAnnotationsVersion}"
     autoFactory = "com.google.auto.factory:auto-factory:${autoFactoryVersion}"
+    autoValue = "com.google.auto.value:auto-value:${autoValueVersion}"
+    autoValueAnnotations = "com.google.auto.value:auto-value-annotations:${autoValueVersion}"
     rxAndroid = "io.reactivex:rxandroid:${rxAndroidVersion}"
     rxJava = "io.reactivex:rxjava:${rxJavaVersion}"
     rxBinding = "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}"
@@ -96,6 +99,8 @@ ext {
             [configuration: "api", dependency: dagger],
             [configuration: "api", dependency: javaxAnnotations],
             [configuration: "api", dependency: autoFactory],
+            [configuration: "api", dependency: autoValue],
+            [configuration: "api", dependency: autoValueAnnotations],
             [configuration: "api", dependency: rxAndroid],
             [configuration: "api", dependency: rxJava],
             [configuration: "api", dependency: rxBinding],
@@ -128,5 +133,6 @@ ext {
             [configuration: "annotationProcessor", dependency: autoFactoryCompiler],
             [configuration: "annotationProcessor", dependency: daggerCompiler],
             [configuration: "annotationProcessor", dependency: butterknifeCompiler],
+            [configuration: "annotationProcessor", dependency: autoValue],
     ]
 }
